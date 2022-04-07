@@ -1,17 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'; /* Object: React, Module: 'react'. */
+import ReactDOM from 'react-dom'; /* Object: ReactDOM, Module: 'react-dom'. */
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const element = <h1>Hello World</h1>; /* Compiles down to 'React.createElement'; */
+ReactDOM.render(element, document.getElementById('root')); 
+/* Root is the container of our react app as seen in 'public/imdex.html' */
+/* Calling ReactDom.render(element, target); Will place our element inside of the target, we need to use vanila JavaScript to get that target location. */
