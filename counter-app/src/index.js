@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.css'; /* Importing the style sheet into our app */
+import Counters from './components/counters'; /* Class name followed by src */
 
+/* Instead of our <App /> we're going to render our <Counter /> component*/
 ReactDOM.render(
   <React.StrictMode>
     <App />
