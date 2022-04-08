@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBasketShopping } from "@fortawesome/free-solid-svg-icons";
 
 // Stateless Functional Component
 // Using functions is a cleaner way of creating components if they are simple and stateless.
@@ -11,10 +13,11 @@ const NavBar = ({ totalCounters }) => {
     <nav className="navbar navbar-light bg-light">
       <a className="navbar-brand" href="#">
         Navbar{""}
-        <span className="badge badge-pill badge-secondary ml-1">
-          {totalCounters}
-        </span>
       </a>
+      <span className="badge badge-pill badge-secondary ml-1">
+        <FontAwesomeIcon className="fa-lg" icon={faBasketShopping} />
+        <span className="ml-2 font-weight-bold">{totalCounters}</span>
+      </span>
     </nav>
   );
 };
