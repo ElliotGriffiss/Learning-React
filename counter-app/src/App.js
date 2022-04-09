@@ -8,10 +8,7 @@ import React, { Component } from 'react';
 class App extends Component {
   state = {
     BasketItems: [
-      { id: 1, value: 1 },
-      { id: 2, value: 2 },
-      { id: 3, value: 3 },
-      { id: 4, value: 4 },
+
     ],
     BasketTotal: 10,
     CartActive: false,
@@ -32,11 +29,11 @@ class App extends Component {
 
   handleIncrement = (counter) => {
     console.log("Increment");
-    const counters = [...this.state.BasketItems]; // this is the spread operator, it will pass all objects from this.state.counters into const counters
-    const index = counters.indexOf(counter); // get index of counter passsed by event
-    counters[index] = { ...counter };
-    counters[index].value++;
-    this.setState({ BasketItems: counters }); // update the state by passing in the new counters array to the state.Counters array
+    const basketItems = [...this.state.BasketItems]; // this is the spread operator, it will pass all objects from this.state.counters into const counters
+    const index = basketItems.indexOf(counter); // get index of counter passsed by event
+    basketItems[index] = { ...counter };
+    basketItems[index].value++;
+    this.setState({ BasketItems: basketItems }); // update the state by passing in the new counters array to the state.Counters array
   };
 
   handleDecrement = (counter) => {
@@ -84,6 +81,30 @@ class App extends Component {
 
   handleAddToCart = (product) => {
     console.log("Add Item to Cart: "+product.Id);
+
+    let basketItem = this.state.BasketItems.find((b) => b.Product.Id === product.Id);
+    console.log(basketItem);
+
+    if (basketItem === undefined)
+    {
+        console.log("Item Not In Basket");
+        basketItem = {
+         Product: product, 
+         Quantity: 1,
+        };
+
+        this.setState({
+          BasketItems: [...this.state.BasketItems, basketItem]
+        })
+    }
+    else
+    {
+      const basketItems = [...this.state.BasketItems]; // this is the spread operator, it will pass all objects from this.state.counters into const counters
+      const index = basketItems.indexOf(basketItem); // get index of counter passsed by event
+      basketItems[index] = { ...basketItem };
+      basketItems[index].Quantity++;
+      this.setState({ BasketItems: basketItems });
+    }
   }
 
   UpdateCartTotal = () =>{
