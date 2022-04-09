@@ -2,16 +2,18 @@ import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/navbar';
 import Cart from './components/cart';
+import StoreFront from './components/storefront';
 import React, { Component } from 'react';
 
 class App extends Component {
   state = {
-    Counters: [
-      { id: 1, value: 0 },
-      { id: 2, value: 1 },
-      { id: 3, value: 0 },
-      { id: 4, value: 2 },
+    BasketItems: [
+      { id: 1, value: 1 },
+      { id: 2, value: 2 },
+      { id: 3, value: 3 },
+      { id: 4, value: 4 },
     ],
+    BasketTotal: 10,
     CartActive: false,
   }
 
@@ -30,16 +32,36 @@ class App extends Component {
 
   handleIncrement = (counter) => {
     console.log("Increment");
-    const counters = [...this.state.Counters]; // this is the spread operator, it will pass all objects from this.state.counters into const counters
+    const counters = [...this.state.BasketItems]; // this is the spread operator, it will pass all objects from this.state.counters into const counters
     const index = counters.indexOf(counter); // get index of counter passsed by event
     counters[index] = { ...counter };
     counters[index].value++;
-    this.setState({ Counters: counters }); // update the state by passing in the new counters array to the state.Counters array
+    this.setState({ BasketItems: counters }); // update the state by passing in the new counters array to the state.Counters array
   };
+
+  handleDecrement = (counter) => {
+    console.log("Decrement");
+    const counters = [...this.state.BasketItems]; // this is the spread operator, it will pass all objects from this.state.counters into const counters
+    const index = counters.indexOf(counter); // get index of counter passsed by event
+    counters[index] = { ...counter };
+  
+    // added in some code to remove counters based on number of items
+    if (counters[index].value <= 0)
+    {
+      this.handleDelete(counters[index].id);
+      console.log("delete: "+counters[index].id);
+    }
+    else
+    {
+      counters[index].value--;
+      this.setState({ BasketItems: counters }); // update the state by passing in the new counters array to the state.Counters array
+    }
+  };
+
 
   handleReset = () => {
     console.log("Reset");
-    const counters = this.state.Counters.map((c) => {
+    const counters = this.state.BasketItems.map((c) => {
       c.value = 0;
       return c;
     });
@@ -49,8 +71,8 @@ class App extends Component {
 
   handleDelete = (counterId) => {
     console.log("Delete");
-    const counters = this.state.Counters.filter((c) => c.id !== counterId); // This is very similar to Linq 'Enumerable.Where'.
-    this.setState({ Counters: counters });
+    const counters = this.state.BasketItems.filter((c) => c.id !== counterId); // This is very similar to Linq 'Enumerable.Where'.
+    this.setState({ BasketItems: counters });
   };
 
   handleToggleCart = () => {
@@ -60,12 +82,21 @@ class App extends Component {
     this.setState({CartActive: cartActive});
   }
 
+  handleAddToCart = (product) => {
+    console.log("Add Item to Cart: "+product.Id);
+  }
+
+  UpdateCartTotal = () =>{
+
+  }
+
   render() {
     return (
       <React.Fragment>
-          <NavBar onCartPressed={this.handleToggleCart} totalCounters={this.state.Counters.filter(c => c.value > 0).length} />
+          <NavBar onCartPressed={this.handleToggleCart} basketTotal={this.state.BasketTotal} totalCounters={this.state.BasketItems.filter(c => c.value > 0).length} />
+          <Cart Visible={this.state.CartActive} basketTotal={this.state.BasketTotal} Counters={this.state.BasketItems} onReset={this.handleReset} onDecrement={this.handleDecrement} onIncrement={this.handleIncrement} onDelete={this.handleDelete} />
           <main>
-            <Cart Visible={this.state.CartActive} Counters={this.state.Counters} onReset={this.handleReset} onIncrement={this.handleIncrement} onDelete={this.handleDelete} />
+            <StoreFront onAddToCart={this.handleAddToCart} />
           </main>
       </React.Fragment>
     );

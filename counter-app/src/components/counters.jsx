@@ -9,11 +9,12 @@ class Counters extends Component {
           onClick={this.props.onReset}
           className="btn btn-primary btn-sm m-2"
         >
-          Reset
+          Clear Cart
         </button>
         {this.props.Counters.map((counter) => (
           <Counter
             key={counter.id} // Key is used internally within react so we can't access it...
+            onDecrement={this.props.onDecrement}
             onIncrement={this.props.onIncrement}
             onDelete={this.props.onDelete}
             counter={counter}

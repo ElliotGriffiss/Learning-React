@@ -1,16 +1,55 @@
 body { font-family: "Roboto", sans-serif !important; }
 
 .store-nav {
-    box-shadow: 0px 2px #909090;
+    box-shadow: 0px 2px black;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+}
+
+.default-padding-top {
+    padding-top: 30px;
+}
+
+.default-padding-bottom {
+    padding-bottom: 30px;
 }
 
 /* Calc(top + nav bar height) */
 .cart {
-    position: absolute;
+    position: fixed;
+    z-index: 10;
     top: calc(0px + 56px);
     right: 0;
-    bottom: 0;
+    height: calc(100vh - 56px);
     width: 30%;
-    background-color: rgba(144,144,144, 0.7);
+    background-color: black;
     transition: 0.3s ease-in;
+  }
+
+.cart--title {
+    text-align: center;
+    font-weight: 700;
+    font-size: 24px;
+    color: white;
+}
+
+.cart--counter {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.storefront--card {
+    background-color: #909090;
+    border-radius: 3px;
+    padding: 8px;
+}
+
+.storefront--card img {
+    height: 180px;
+    max-width: 100%;
 }
