@@ -10,7 +10,7 @@ class App extends Component {
     BasketItems: [
 
     ],
-    BasketTotal: 10,
+    BasketTotal: 0,
     CartActive: false,
   }
 
@@ -82,8 +82,8 @@ class App extends Component {
   handleAddToCart = (product) => {
     console.log("Add Item to Cart: "+product.Id);
 
-    let basketItem = this.state.BasketItems.find((b) => b.Product.Id === product.Id);
-    console.log(basketItem);
+    let basketItems = [...this.state.BasketItems];
+    let basketItem = basketItems.find((b) => b.Product.Id === product.Id);
 
     if (basketItem === undefined)
     {
@@ -93,22 +93,28 @@ class App extends Component {
          Quantity: 1,
         };
 
-        this.setState({
-          BasketItems: [...this.state.BasketItems, basketItem]
-        })
+        basketItems.push(basketItem);
     }
     else
-    {
-      const basketItems = [...this.state.BasketItems]; // this is the spread operator, it will pass all objects from this.state.counters into const counters
-      const index = basketItems.indexOf(basketItem); // get index of counter passsed by event
+    { 
+      console.log("Already In Basket");
+      const index = basketItems.indexOf(basketItem);
       basketItems[index] = { ...basketItem };
       basketItems[index].Quantity++;
-      this.setState({ BasketItems: basketItems });
     }
+
+    const basketTotal = this.UpdateBasketTotal(basketItems);
+    this.setState({ BasketItems: basketItems, BasketTotal: basketTotal });
   }
 
-  UpdateCartTotal = () =>{
+  UpdateBasketTotal = (basketItems) => {
+    let basketTotal = 0;
 
+    basketItems.forEach(element => {
+      basketTotal += element.Product.price * element.Quantity;
+    });
+
+    return basketTotal;
   }
 
   render() {
