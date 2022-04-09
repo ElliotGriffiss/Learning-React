@@ -8,16 +8,20 @@ import { faBasketShopping } from "@fortawesome/free-solid-svg-icons";
 // We can also use object destructuring to access the value without using props.
 // Life cycle hooks can not be used in stateless components as they are inhertied from 'Component'
 
-const NavBar = ({ totalCounters }) => {
+const NavBar = ({ totalCounters, onCartPressed }) => {
   return (
-    <nav className="navbar navbar-light bg-light">
+    <nav className="store-nav navbar navbar-light bg-light">
       <a className="navbar-brand" href="#">
         Navbar{""}
       </a>
-      <span className="badge badge-pill badge-secondary ml-1">
+      <a
+        href="#"
+        className="badge badge-pill badge-secondary ml-1"
+        onClick={() => onCartPressed()}
+      >
         <FontAwesomeIcon className="fa-lg" icon={faBasketShopping} />
         <span className="ml-2 font-weight-bold">{totalCounters}</span>
-      </span>
+      </a>
     </nav>
   );
 };

@@ -7,7 +7,6 @@ class Counter extends Component {
   /* state is an object that includes any data this object needs */
   state = {
     value: this.props.counter.value,
-    // tags: ["tag1", "tag2", "tag3"],
   };
 
   /* we can pass in this object style={this.style} to sent a DOM elements style */

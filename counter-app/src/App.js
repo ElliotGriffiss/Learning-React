@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/navbar';
-import Counters from './components/counters'; /* Class name followed by src */
+import Cart from './components/cart';
 import React, { Component } from 'react';
 
 class App extends Component {
@@ -12,6 +12,7 @@ class App extends Component {
       { id: 3, value: 0 },
       { id: 4, value: 2 },
     ],
+    CartActive: false,
   }
 
   // A constructor is called only once when an instance of a class is created.
@@ -52,12 +53,19 @@ class App extends Component {
     this.setState({ Counters: counters });
   };
 
+  handleToggleCart = () => {
+    let cartActive = this.state.CartActive;
+    cartActive = !cartActive;
+    console.log(cartActive);
+    this.setState({CartActive: cartActive});
+  }
+
   render() {
     return (
       <React.Fragment>
-          <NavBar totalCounters={this.state.Counters.filter(c => c.value > 0).length} />
-          <main className='container'>
-            <Counters Counters={this.state.Counters} onReset={this.handleReset} onIncrement={this.handleIncrement} onDelete={this.handleDelete} />
+          <NavBar onCartPressed={this.handleToggleCart} totalCounters={this.state.Counters.filter(c => c.value > 0).length} />
+          <main>
+            <Cart Visible={this.state.CartActive} Counters={this.state.Counters} onReset={this.handleReset} onIncrement={this.handleIncrement} onDelete={this.handleDelete} />
           </main>
       </React.Fragment>
     );
