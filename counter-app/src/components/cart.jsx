@@ -9,18 +9,36 @@ class Cart extends Component {
   displayNav() {
     if (this.props.Visible) {
       return (
-        <aside className="cart cart-show">
-          <p className="cart--title mt-4">Shopping Cart</p>
+        <aside className="cart">
+          <div className="cart--title position-relative mt-4">
+            <p>Shopping Cart</p>
+            <a
+              onClick={this.props.onCartPressed}
+              className="cart--close-button"
+            >
+              X
+            </a>
+          </div>
           <Counters
             basketItems={this.props.basketItems}
-            onReset={this.props.onReset}
             onDecrement={this.props.onDecrement}
             onIncrement={this.props.onIncrement}
             onDelete={this.props.onDelete}
           />
-          <p className="cart--total">
-            Total: £{this.props.basketTotal.toFixed(2)}
-          </p>
+          <div className="cart--checkout-box">
+            <p className="cart--total">
+              Total: £{this.props.basketTotal.toFixed(2)}
+            </p>
+            <button
+              onClick={this.props.onReset}
+              className="btn btn-danger mr-2"
+            >
+              Clear Cart
+            </button>
+            <button onClick={this.props.onCheckout} className="btn btn-primary">
+              Checkout
+            </button>
+          </div>
         </aside>
       );
     }

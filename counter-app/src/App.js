@@ -111,6 +111,11 @@ class App extends Component {
     this.setState({ BasketItems: basketItems, BasketTotal: basketTotal });
   }
 
+  handleCheckout = () => {
+    console.log("Handle Checkout");
+    alert("React Storefront was made to practice my web development skills, there is no check out.");
+  }
+
   UpdateBasketTotal = (basketItems) => {
     let basketTotal = 0;
 
@@ -125,7 +130,7 @@ class App extends Component {
     return (
       <React.Fragment>
           <NavBar onCartPressed={this.handleToggleCart} basketTotal={this.state.BasketTotal} totalCounters={this.state.BasketItems.length} />
-          <Cart Visible={this.state.CartActive} basketTotal={this.state.BasketTotal} basketItems={this.state.BasketItems} onReset={this.handleReset} onDecrement={this.handleDecrement} onIncrement={this.handleIncrement} onDelete={this.handleDelete} />
+          <Cart Visible={this.state.CartActive} onCartPressed={this.handleToggleCart} onCheckout={this.handleCheckout} basketTotal={this.state.BasketTotal} basketItems={this.state.BasketItems} onReset={this.handleReset} onDecrement={this.handleDecrement} onIncrement={this.handleIncrement} onDelete={this.handleDelete} />
           <main>
             <StoreFront onAddToCart={this.handleAddToCart} />
           </main>

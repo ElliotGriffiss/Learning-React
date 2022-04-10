@@ -27,7 +27,6 @@ class NavBar extends Component {
             </div>
           </a>
           <a
-            href="#"
             className="store-nav--cart mr-3 p-2"
             onClick={() => this.props.onCartPressed()}
           >

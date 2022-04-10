@@ -4,13 +4,7 @@ import Counter from "./counter";
 class Counters extends Component {
   render() {
     return (
-      <React.Fragment>
-        <button
-          onClick={this.props.onReset}
-          className="btn btn-primary btn-sm m-2"
-        >
-          Clear Cart
-        </button>
+      <div className="cart--counters-container">
         {this.props.basketItems.map((item) => (
           <Counter
             key={item.Product.Id} // Key is used internally within react so we can't access it...
@@ -20,7 +14,7 @@ class Counters extends Component {
             item={item}
           />
         ))}
-      </React.Fragment>
+      </div>
     );
   }
 }
