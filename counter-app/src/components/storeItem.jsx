@@ -13,7 +13,7 @@ class StoreItem extends Component {
           <img src={this.props.product.img} alt="" />
           <p>{this.props.product.Description}</p>
           <p>
-            <strong>£{this.props.product.price}</strong>
+            <strong>£{this.props.product.price.toFixed(2)}</strong>
           </p>
           <button
             onClick={() => this.props.onAddToCart(this.props.product)}

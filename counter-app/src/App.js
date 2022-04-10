@@ -27,49 +27,53 @@ class App extends Component {
     console.log("app mounted");
   }
 
-  handleIncrement = (counter) => {
+  handleIncrement = (item) => {
     console.log("Increment");
     const basketItems = [...this.state.BasketItems]; // this is the spread operator, it will pass all objects from this.state.counters into const counters
-    const index = basketItems.indexOf(counter); // get index of counter passsed by event
-    basketItems[index] = { ...counter };
-    basketItems[index].value++;
-    this.setState({ BasketItems: basketItems }); // update the state by passing in the new counters array to the state.Counters array
+    const index = basketItems.indexOf(item); // get index of counter passsed by event
+    basketItems[index] = { ...item };
+    basketItems[index].Quantity++;
+
+    const basketTotal = this.UpdateBasketTotal(basketItems);
+    this.setState({ BasketItems: basketItems, BasketTotal: basketTotal });
   };
 
-  handleDecrement = (counter) => {
+  handleDecrement = (item) => {
     console.log("Decrement");
-    const counters = [...this.state.BasketItems]; // this is the spread operator, it will pass all objects from this.state.counters into const counters
-    const index = counters.indexOf(counter); // get index of counter passsed by event
-    counters[index] = { ...counter };
+    const basketItems = [...this.state.BasketItems]; // this is the spread operator, it will pass all objects from this.state.counters into const counters
+    const index = basketItems.indexOf(item); // get index of counter passsed by event
+    basketItems[index] = { ...item };
   
     // added in some code to remove counters based on number of items
-    if (counters[index].value <= 0)
+    if (basketItems[index].Quantity <= 0)
     {
-      this.handleDelete(counters[index].id);
-      console.log("delete: "+counters[index].id);
+      this.handleDelete(basketItems[index].Product.Id);
+      console.log("delete: "+basketItems[index].Product.Id);
     }
     else
     {
-      counters[index].value--;
-      this.setState({ BasketItems: counters }); // update the state by passing in the new counters array to the state.Counters array
+      basketItems[index].Quantity--;
+      const basketTotal = this.UpdateBasketTotal(basketItems);
+      this.setState({ BasketItems: basketItems, BasketTotal: basketTotal });
     }
   };
 
-
   handleReset = () => {
     console.log("Reset");
-    const counters = this.state.BasketItems.map((c) => {
-      c.value = 0;
-      return c;
-    });
+    const basketItems = [
 
-    this.setState({ counters });
+    ];
+
+    const basketTotal = this.UpdateBasketTotal(basketItems);
+    this.setState({ BasketItems: basketItems, BasketTotal: basketTotal });
   };
 
-  handleDelete = (counterId) => {
+  handleDelete = (productId) => {
     console.log("Delete");
-    const counters = this.state.BasketItems.filter((c) => c.id !== counterId); // This is very similar to Linq 'Enumerable.Where'.
-    this.setState({ BasketItems: counters });
+    const basketItems = this.state.BasketItems.filter((c) => c.Product.Id !== productId); // This is very similar to Linq 'Enumerable.Where'.
+    const basketTotal = this.UpdateBasketTotal(basketItems);
+    
+    this.setState({ BasketItems: basketItems, BasketTotal: basketTotal });
   };
 
   handleToggleCart = () => {
@@ -120,8 +124,8 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-          <NavBar onCartPressed={this.handleToggleCart} basketTotal={this.state.BasketTotal} totalCounters={this.state.BasketItems.filter(c => c.value > 0).length} />
-          <Cart Visible={this.state.CartActive} basketTotal={this.state.BasketTotal} Counters={this.state.BasketItems} onReset={this.handleReset} onDecrement={this.handleDecrement} onIncrement={this.handleIncrement} onDelete={this.handleDelete} />
+          <NavBar onCartPressed={this.handleToggleCart} basketTotal={this.state.BasketTotal} totalCounters={this.state.BasketItems.length} />
+          <Cart Visible={this.state.CartActive} basketTotal={this.state.BasketTotal} basketItems={this.state.BasketItems} onReset={this.handleReset} onDecrement={this.handleDecrement} onIncrement={this.handleIncrement} onDelete={this.handleDelete} />
           <main>
             <StoreFront onAddToCart={this.handleAddToCart} />
           </main>

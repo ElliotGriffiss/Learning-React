@@ -5,9 +5,7 @@ import React, {
 /* This component when rendered returns a <h1> tag */
 class Counter extends Component {
   /* state is an object that includes any data this object needs */
-  state = {
-    value: this.props.counter.value,
-  };
+  state = {};
 
   /* we can pass in this object style={this.style} to sent a DOM elements style */
   /* or we can use style={{fontSize: 3}} as an attribute */
@@ -36,41 +34,44 @@ class Counter extends Component {
     // When creating a list a key attribute is required so that react can identify each element
     return (
       <div className="cart--counter">
-        <button
-          onClick={() => this.props.onDecrement(this.props.counter)}
-          className="btn btn-secondary btn-sm"
-        >
-          -
-        </button>
-        <span style={this.style} className={counterClasses}>
-          {this.formattCount()}
-        </span>
-        <button
-          onClick={() => this.props.onIncrement(this.props.counter)}
-          className="btn btn-secondary btn-sm"
-        >
-          +
-        </button>
-        <button
-          className="btn btn-danger btn-sm m-2"
-          onClick={() => this.props.onDelete(this.props.counter.id)}
-        >
-          X
-        </button>
+        <p className="cart--counter-title">{this.props.item.Product.Title}</p>
+        <div className="cart--buttons">
+          <button
+            onClick={() => this.props.onDecrement(this.props.item)}
+            className="btn btn-secondary btn-sm"
+          >
+            -
+          </button>
+          <span style={this.style} className={counterClasses}>
+            {this.formattCount()}
+          </span>
+          <button
+            onClick={() => this.props.onIncrement(this.props.item)}
+            className="btn btn-secondary btn-sm"
+          >
+            +
+          </button>
+          <button
+            className="btn btn-danger btn-sm m-2"
+            onClick={() => this.props.onDelete(this.props.item.Product.Id)}
+          >
+            X
+          </button>
+        </div>
       </div>
     ); /* this is a JSX expression not a string */
   }
 
   getBadgeClasses() {
     let counterClasses = "badge m-2 badge";
-    counterClasses += this.props.counter.value === 0 ? "-warning" : "-primary";
+    counterClasses += this.props.item.Quantity == 0 ? "-warning" : "-primary";
     return counterClasses;
   }
 
   formattCount() {
     // we can use object destructuring to take the value property and store it in a constant called value
-    const { value } = this.props.counter;
-    return value === 0 ? "Zero" : value;
+    const { value } = this.props.item.Quantity;
+    return this.props.item.Quantity == 0 ? "Zero" : this.props.item.Quantity;
   }
 }
 

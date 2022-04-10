@@ -11,13 +11,13 @@ class Counters extends Component {
         >
           Clear Cart
         </button>
-        {this.props.Counters.map((counter) => (
+        {this.props.basketItems.map((item) => (
           <Counter
-            key={counter.id} // Key is used internally within react so we can't access it...
+            key={item.Product.Id} // Key is used internally within react so we can't access it...
             onDecrement={this.props.onDecrement}
             onIncrement={this.props.onIncrement}
             onDelete={this.props.onDelete}
-            counter={counter}
+            item={item}
           />
         ))}
       </React.Fragment>

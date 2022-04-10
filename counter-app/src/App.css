@@ -37,6 +37,17 @@ body { font-family: "Roboto", sans-serif !important; }
 }
 
 .cart--counter {
+    color: white;
+    text-align: center;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.cart--counter-title {
+    margin-bottom: 0px;
+}
+
+.cart--buttons {
     width: 100%;
     display: flex;
     align-items: center;

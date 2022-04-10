@@ -12,7 +12,7 @@ class Cart extends Component {
         <aside className="cart cart-show">
           <p className="cart--title mt-4">Shopping Cart</p>
           <Counters
-            Counters={this.props.Counters}
+            basketItems={this.props.basketItems}
             onReset={this.props.onReset}
             onDecrement={this.props.onDecrement}
             onIncrement={this.props.onIncrement}
