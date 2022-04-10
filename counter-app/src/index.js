@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './App.css';
-import "@fontsource/roboto";
+import "@fontsource/roboto-slab";
 import 'bootstrap/dist/css/bootstrap.css'; /* Importing the style sheet into our app */
 import Counters from './components/counters'; /* Class name followed by src */
 

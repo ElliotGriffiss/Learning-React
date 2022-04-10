@@ -1,13 +1,23 @@
-body { font-family: "Roboto", sans-serif !important; }
+body { font-family: "Roboto Slab", serif !important;}
 
-.store-nav {
-    box-shadow: 0px 2px black;
-    position: sticky;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 20;
+.black {
+    color: #241f1f;
 }
+
+.white {
+    color: #fff;
+}
+
+.yellow {
+    color: #ffdc00
+}
+
+a:hover {
+    color: #ffdc00 !important;
+    text-decoration: inherit !important;
+    transition: all .15s ease;
+}
+
 
 .default-padding-top {
     padding-top: 30px;
@@ -17,15 +27,70 @@ body { font-family: "Roboto", sans-serif !important; }
     padding-bottom: 30px;
 }
 
+.store-nav {
+    background-color: #241f1f;
+    box-shadow: 0px 2px #ffdc00;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    padding: 22px 1rem;
+}
+
+.store-nav--nav {
+    color: #fff;
+    font-weight: 900;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.store-nav--logo-icon {
+    font-size: 43px;
+}
+
+.store-nav--Logo-text {
+    font-size: 22px;
+    line-height: 1;
+}
+
+.store-nav--cart {
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+}
+
+.store-nav--total {
+    margin-bottom: -3px;
+}
+
+.store-nav--cart-counter {
+    position: absolute;
+    left: 90%;
+    bottom: 60%;
+    border-radius: 50%;
+    color: #241f1f;
+    background-color: #ffdc00;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+}
+
 /* Calc(top + nav bar height) */
 .cart {
     position: fixed;
     z-index: 10;
-    top: calc(0px + 56px);
+    top: calc(0px + 88px);
     right: 0;
-    height: calc(100vh - 56px);
+    height: calc(100vh - 88px);
     width: 30%;
-    background-color: black;
+    background-color: #241f1f;
     transition: 0.3s ease-in;
   }
 
@@ -33,11 +98,11 @@ body { font-family: "Roboto", sans-serif !important; }
     text-align: center;
     font-weight: 700;
     font-size: 24px;
-    color: white;
+    color: #fff;
 }
 
 .cart--counter {
-    color: white;
+    color: #fff;
     text-align: center;
     margin-top: 6px;
     margin-bottom: 6px;
