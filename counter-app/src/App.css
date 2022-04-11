@@ -259,6 +259,10 @@ a:hover {
     height: 180px;
 }
 
+.storefront--card-description {
+    min-height: 120px;
+}
+
 .storefront--cart-button {
     color: #fff;
     background-color: #007681;

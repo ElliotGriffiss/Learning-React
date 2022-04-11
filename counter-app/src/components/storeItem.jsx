@@ -19,7 +19,9 @@ class StoreItem extends Component {
               style={imageStyle}
             ></div>
           </div>
-          <p>{this.props.product.description}</p>
+          <p className="storefront--card-description">
+            {this.formatDescription()}
+          </p>
           <p>
             <strong>£{this.props.product.price.toFixed(2)}</strong>
           </p>
@@ -33,6 +35,19 @@ class StoreItem extends Component {
       </div>
     );
   }
+
+  formatDescription = () => {
+    const { description } = this.props.product;
+    console.log(description);
+
+    return (
+      <React.Fragment>
+        {description.length > 140
+          ? `${description.substring(0, 140)}...`
+          : description}
+      </React.Fragment>
+    );
+  };
 }
 
 export default StoreItem;
