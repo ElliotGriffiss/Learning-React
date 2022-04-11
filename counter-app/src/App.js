@@ -1,9 +1,10 @@
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/navbar';
 import Cart from './components/cart';
 import StoreFront from './components/storefront';
-import React, { Component } from 'react';
+import Colophon from './components/colophon';
 
 class App extends Component {
   state = {
@@ -47,8 +48,8 @@ class App extends Component {
     // added in some code to remove counters based on number of items
     if (basketItems[index].Quantity <= 0)
     {
-      this.handleDelete(basketItems[index].Product.Id);
-      console.log("delete: "+basketItems[index].Product.Id);
+      this.handleDelete(basketItems[index].Product.id);
+      console.log("delete: "+basketItems[index].Product.id);
     }
     else
     {
@@ -70,7 +71,7 @@ class App extends Component {
 
   handleDelete = (productId) => {
     console.log("Delete");
-    const basketItems = this.state.BasketItems.filter((c) => c.Product.Id !== productId); // This is very similar to Linq 'Enumerable.Where'.
+    const basketItems = this.state.BasketItems.filter((c) => c.Product.id !== productId); // This is very similar to Linq 'Enumerable.Where'.
     const basketTotal = this.UpdateBasketTotal(basketItems);
     
     this.setState({ BasketItems: basketItems, BasketTotal: basketTotal });
@@ -84,10 +85,10 @@ class App extends Component {
   }
 
   handleAddToCart = (product) => {
-    console.log("Add Item to Cart: "+product.Id);
+    console.log("Add Item to Cart: "+product.id);
 
     let basketItems = [...this.state.BasketItems];
-    let basketItem = basketItems.find((b) => b.Product.Id === product.Id);
+    let basketItem = basketItems.find((b) => b.Product.id === product.id);
 
     if (basketItem === undefined)
     {
@@ -134,6 +135,7 @@ class App extends Component {
           <main>
             <StoreFront onAddToCart={this.handleAddToCart} />
           </main>
+          <Colophon />
       </React.Fragment>
     );
   }

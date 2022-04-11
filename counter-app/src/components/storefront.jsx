@@ -7,11 +7,12 @@ class StoreFront extends Component {
   render() {
     return (
       <div className="container default-padding-top">
+        <h1>Shop</h1>
         <div className="row justify-content-start align-items-top">
           {Products.map((product) => {
             return (
               <StoreItem
-                key={product.Id}
+                key={product.id}
                 product={product}
                 onAddToCart={this.props.onAddToCart}
               />

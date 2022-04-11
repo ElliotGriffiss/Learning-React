@@ -1,5 +1,11 @@
 body { font-family: "Roboto Slab", serif !important;}
 
+h1 {
+    font-size: 40px;
+    text-transform: uppercase;
+    margin-bottom: 1rem !important;
+}
+
 .black {
     color: #241f1f;
 }
@@ -18,6 +24,40 @@ a:hover {
     transition: all .15s ease;
 }
 
+/* Bootstrap Button Overrides */
+
+.badge-primary {
+    background-color: #007681 !important;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007681 !important;
+    border: solid 2px #007681 !important;
+}
+
+.btn-primary:hover {
+    border-color:#fff !important;
+    transition: all .3s ease-in;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #DE3F43 !important;
+    border: solid 2px #DE3F43 !important;
+    transition: all .3s ease-out;
+}
+
+.btn-danger:hover {
+    border-color:#fff !important;
+    transition: all .3s ease-in;
+}
+
+.background-image {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 
 .default-padding-top {
     padding-top: 30px;
@@ -29,7 +69,7 @@ a:hover {
 
 .store-nav {
     background-color: #241f1f;
-    box-shadow: 0px 2px #ffdc00;
+    border-bottom: solid 0.14286rem #ffdc00;
     position: sticky;
     top: 0;
     left: 0;
@@ -116,7 +156,7 @@ a:hover {
 .cart--counters-container {
     position: absolute;
     top: 76px;
-    bottom: 110px;
+    bottom: 112px;
     left: 0;
     right: 0;
     overflow-y: auto;
@@ -134,11 +174,18 @@ a:hover {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
 }
 
-.cart--image img {
-    height: 140px;
+.cart--image {
+    height: 132px;
+    background-color: #fff;
+}
+
+.cart--image-container {
+    padding: 8px;
+    border-radius: 3px;
+    background-color: #fff;
 }
 
 .cart--counter-title {
@@ -152,8 +199,8 @@ a:hover {
     font-weight: 300;
     font-size: 16px;
     margin-bottom: 0 !important;
-    padding-right: 47px;
     font-weight: 500;
+    min-width: 90px;
 } 
 
 .cart--checkout-box {
@@ -181,16 +228,63 @@ a:hover {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+}
+
+.cart--buttons .btn {
+    font-weight: 700;
+    font-size: 1rem;
 }
 
 .storefront--card {
-    background-color: #909090;
+    background-color: #e3dfde;
     border-radius: 3px;
-    padding: 8px;
+    padding:16px;
+    box-shadow: 3px 3px rgba(180, 180, 180,0.7);
 }
 
-.storefront--card img {
+.storefront--card h3 {
+    min-height: 67px;
+}
+
+.storefront--card-image-container {
+    padding: 8px;
+    background-color: #fff;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.storefront--card-image {
     height: 180px;
-    max-width: 100%;
+}
+
+.storefront--cart-button {
+    color: #fff;
+    background-color: #007681;
+    border: solid 2px !important;
+    border-color: #007681 !important;
+    transition: 0.3s ease-out;
+}
+
+.storefront--cart-button:hover {
+    color: #007681;
+    background-color: #e3dfde;
+    border-color: #007681;
+    transition: 0.3s ease-in;
+}
+
+.storefront--cart-button:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+#colophon {
+    text-align: center;
+    color: #fff;
+    background-color: #00000e;
+    border-top: solid 3px #007681;
+}
+
+#colophon a {
+    color: #fff;
 }
