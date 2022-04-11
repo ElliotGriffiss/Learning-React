@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 class StoreItem extends Component {
   render() {
@@ -26,10 +28,16 @@ class StoreItem extends Component {
             <strong>£{this.props.product.price.toFixed(2)}</strong>
           </p>
           <button
-            onClick={() => this.props.onAddToCart(this.props.product)}
-            className="btn storefront--cart-button"
+            onClick={() => this.props.onViewProduct(this.props.product)}
+            className="btn storefront--cart-button mr-2"
           >
-            Add to Cart
+            Product Details
+          </button>
+          <button
+            className="btn storefront--cart-button"
+            onClick={() => this.props.onAddToCart(this.props.product)}
+          >
+            <FontAwesomeIcon icon={faShoppingCart} />
           </button>
         </div>
       </div>

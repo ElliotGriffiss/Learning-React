@@ -4,6 +4,7 @@ import './App.css';
 import NavBar from './components/navbar';
 import Cart from './components/cart';
 import StoreFront from './components/storefront';
+import ProductDisplay from './components/productDisplay';
 import Colophon from './components/colophon';
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
     ],
     BasketTotal: 0,
     CartActive: false,
+    DisplayProduct: null,
   }
 
   // A constructor is called only once when an instance of a class is created.
@@ -80,8 +82,11 @@ class App extends Component {
   handleToggleCart = () => {
     let cartActive = this.state.CartActive;
     cartActive = !cartActive;
-    console.log(cartActive);
-    this.setState({CartActive: cartActive});
+
+    // This is bad practice, I should be useing an enum to represent the current state of the app
+    // and then checking against that. I'll keep that in mind for next time.
+    let newState = (this.state.DisplayProduct == null) ? {CartActive: cartActive} : {CartActive: cartActive, DisplayProduct: null};
+    this.setState(newState);
   }
 
   handleAddToCart = (product) => {
@@ -117,6 +122,18 @@ class App extends Component {
     alert("React Storefront was made to practice my web development skills, there is no check out.");
   }
 
+  handleOpenProductDisplay = (product) => {
+    let cartActive = this.state.CartActive;
+    const Product = product;
+    cartActive = false;
+    console.log(product);
+    this.setState({CartActive: cartActive, DisplayProduct: Product});
+  }
+
+  handleCloseProductDisplay = () => {
+    this.setState({DisplayProduct: null});
+  }
+
   UpdateBasketTotal = (basketItems) => {
     let basketTotal = 0;
 
@@ -132,10 +149,11 @@ class App extends Component {
       <React.Fragment>
           <NavBar onCartPressed={this.handleToggleCart} basketTotal={this.state.BasketTotal} totalCounters={this.state.BasketItems.length} />
           <Cart Visible={this.state.CartActive} onCartPressed={this.handleToggleCart} onCheckout={this.handleCheckout} basketTotal={this.state.BasketTotal} basketItems={this.state.BasketItems} onReset={this.handleReset} onDecrement={this.handleDecrement} onIncrement={this.handleIncrement} onDelete={this.handleDelete} />
-          <main>
-            <StoreFront onAddToCart={this.handleAddToCart} />
+          <main className='position-relative'>
+            <StoreFront onAddToCart={this.handleAddToCart} onViewProduct={this.handleOpenProductDisplay} />
+            <ProductDisplay displayProduct={this.state.DisplayProduct} onAddToCart={this.handleAddToCart} onCloseProductDisplay={this.handleCloseProductDisplay} />
+            <Colophon />
           </main>
-          <Colophon />
       </React.Fragment>
     );
   }

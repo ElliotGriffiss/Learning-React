@@ -7,7 +7,7 @@ class StoreFront extends Component {
   render() {
     return (
       <div className="container default-padding-top">
-        <h1>Shop</h1>
+        <h1 className="mb-4">Shop</h1>
         <div className="row justify-content-start align-items-top">
           {Products.map((product) => {
             return (
@@ -15,6 +15,7 @@ class StoreFront extends Component {
                 key={product.id}
                 product={product}
                 onAddToCart={this.props.onAddToCart}
+                onViewProduct={this.props.onViewProduct}
               />
             );
           })}
