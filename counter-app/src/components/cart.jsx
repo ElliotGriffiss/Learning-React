@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Counters from "./counters";
+import CartItems from "./counters";
 
 class Cart extends Component {
   render() {
@@ -19,7 +19,7 @@ class Cart extends Component {
               X
             </a>
           </div>
-          <Counters
+          <CartItems
             basketItems={this.props.basketItems}
             onDecrement={this.props.onDecrement}
             onIncrement={this.props.onIncrement}
@@ -44,14 +44,6 @@ class Cart extends Component {
     }
 
     return null;
-  }
-
-  componentDidUpdate() {
-    console.log("Did Update");
-  }
-
-  componentDidMount() {
-    console.log("Did Mount");
   }
 }
 

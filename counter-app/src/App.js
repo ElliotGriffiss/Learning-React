@@ -17,37 +17,26 @@ class App extends Component {
     DisplayProduct: null,
   }
 
-  // A constructor is called only once when an instance of a class is created.
-  // It can be used to initalized the properties in an instance (similar to C#).
-  constructor() {
-    super();
-    // For the following code to work we need to pass in props to the constructor and the super.
-    // this.state = this.props.property;
-  }
-
-  // This is called once the DOM has been loaded and should be used to make Ajax calls to populate data from the server.
-  componentDidMount() {
-    console.log("app mounted");
-  }
-
-  handleIncrement = (item) => {
+  // Increases Quantity of an item in the basket
+  handleIncrement = (bItem) => {
     console.log("Increment");
-    const basketItems = [...this.state.BasketItems]; // this is the spread operator, it will pass all objects from this.state.counters into const counters
-    const index = basketItems.indexOf(item); // get index of counter passsed by event
-    basketItems[index] = { ...item };
+    const basketItems = [...this.state.BasketItems];
+    const index = basketItems.indexOf(bItem);
+    basketItems[index] = { ...bItem };
     basketItems[index].Quantity++;
 
     const basketTotal = this.UpdateBasketTotal(basketItems);
     this.setState({ BasketItems: basketItems, BasketTotal: basketTotal });
   };
 
-  handleDecrement = (item) => {
+  // Decreases Quantity of an item in the basket.
+  handleDecrement = (bItem) => {
     console.log("Decrement");
-    const basketItems = [...this.state.BasketItems]; // this is the spread operator, it will pass all objects from this.state.counters into const counters
-    const index = basketItems.indexOf(item); // get index of counter passsed by event
-    basketItems[index] = { ...item };
+    const basketItems = [...this.state.BasketItems];
+    const index = basketItems.indexOf(bItem);
+    basketItems[index] = { ...bItem };
   
-    // added in some code to remove counters based on number of items
+    // Removes an item from the basket if it has a value of less than zero.
     if (basketItems[index].Quantity <= 0)
     {
       this.handleDelete(basketItems[index].Product.id);
@@ -61,8 +50,8 @@ class App extends Component {
     }
   };
 
+  // Removes all items in the cart.
   handleReset = () => {
-    console.log("Reset");
     const basketItems = [
 
     ];
@@ -71,33 +60,32 @@ class App extends Component {
     this.setState({ BasketItems: basketItems, BasketTotal: basketTotal });
   };
 
+  // Deletes a basket item from the cart.
   handleDelete = (productId) => {
-    console.log("Delete");
-    const basketItems = this.state.BasketItems.filter((c) => c.Product.id !== productId); // This is very similar to Linq 'Enumerable.Where'.
+    const basketItems = this.state.BasketItems.filter((c) => c.Product.id !== productId);
     const basketTotal = this.UpdateBasketTotal(basketItems);
     
     this.setState({ BasketItems: basketItems, BasketTotal: basketTotal });
   };
 
+  // Toggles the carts active state.
   handleToggleCart = () => {
     let cartActive = this.state.CartActive;
     cartActive = !cartActive;
 
-    // This is bad practice, I should be useing an enum to represent the current state of the app
+    // TODO: This is bad practice, I should be useing an enum to represent the current state of the app
     // and then checking against that. I'll keep that in mind for next time.
     let newState = (this.state.DisplayProduct == null) ? {CartActive: cartActive} : {CartActive: cartActive, DisplayProduct: null};
     this.setState(newState);
   }
 
+  // Adds a product to the cart.
   handleAddToCart = (product) => {
-    console.log("Add Item to Cart: "+product.id);
-
     let basketItems = [...this.state.BasketItems];
     let basketItem = basketItems.find((b) => b.Product.id === product.id);
 
     if (basketItem === undefined)
     {
-        console.log("Item Not In Basket");
         basketItem = {
          Product: product, 
          Quantity: 1,
@@ -107,7 +95,6 @@ class App extends Component {
     }
     else
     { 
-      console.log("Already In Basket");
       const index = basketItems.indexOf(basketItem);
       basketItems[index] = { ...basketItem };
       basketItems[index].Quantity++;
@@ -117,23 +104,25 @@ class App extends Component {
     this.setState({ BasketItems: basketItems, BasketTotal: basketTotal });
   }
 
+  // Handles the checkout functionality of the cart.
   handleCheckout = () => {
-    console.log("Handle Checkout");
     alert("React Storefront was made to practice my web development skills, there is no check out.");
   }
 
+  // Opens the product display and closes any other open panels.
   handleOpenProductDisplay = (product) => {
     let cartActive = this.state.CartActive;
     const Product = product;
     cartActive = false;
-    console.log(product);
     this.setState({CartActive: cartActive, DisplayProduct: Product});
   }
 
+  // Closes the product display.
   handleCloseProductDisplay = () => {
     this.setState({DisplayProduct: null});
   }
 
+  // Updates the basket total cost.
   UpdateBasketTotal = (basketItems) => {
     let basketTotal = 0;
 
@@ -147,7 +136,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-          <NavBar onCartPressed={this.handleToggleCart} basketTotal={this.state.BasketTotal} totalCounters={this.state.BasketItems.length} />
+          <NavBar onCartPressed={this.handleToggleCart} basketTotal={this.state.BasketTotal} totalBasketItems={this.state.BasketItems.length} />
           <Cart Visible={this.state.CartActive} onCartPressed={this.handleToggleCart} onCheckout={this.handleCheckout} basketTotal={this.state.BasketTotal} basketItems={this.state.BasketItems} onReset={this.handleReset} onDecrement={this.handleDecrement} onIncrement={this.handleIncrement} onDelete={this.handleDelete} />
           <main className='position-relative'>
             <StoreFront onAddToCart={this.handleAddToCart} onViewProduct={this.handleOpenProductDisplay} />

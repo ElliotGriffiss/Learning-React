@@ -7,6 +7,7 @@ class ProductDisplay extends Component {
     return <>{this.ShowProductDisplay()}</>;
   }
 
+  // Returns the product display if there is a product to display
   ShowProductDisplay = () => {
     if (this.props.displayProduct != undefined) {
       document.documentElement.style.overflowY = "hidden";

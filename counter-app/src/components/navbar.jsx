@@ -3,13 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faReact } from "@fortawesome/free-brands-svg-icons";
 
-// Stateless Functional Component
-// Using functions is a cleaner way of creating components if they are simple and stateless.
-// For this to work we need to pass in props as a varaible into the function then access it differently.
-// We can also use object destructuring to access the value without using props.
-// Life cycle hooks can not be used in stateless components as they are inhertied from 'Component'
-// This component now has a state so it has to inherit Component
-
 class NavBar extends Component {
   render() {
     return (
@@ -43,11 +36,12 @@ class NavBar extends Component {
     );
   }
 
+  // Adds the cart counter to the GUI if there are more than one item in the basket
   GetCartCounter() {
-    if (this.props.totalCounters > 0) {
+    if (this.props.totalBasketItems > 0) {
       return (
         <span className="store-nav--cart-counter">
-          {this.props.totalCounters}
+          {this.props.totalBasketItems}
         </span>
       );
     }
