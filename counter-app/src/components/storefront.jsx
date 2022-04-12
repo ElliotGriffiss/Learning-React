@@ -6,7 +6,7 @@ class StoreFront extends Component {
   render() {
     return (
       <div className="container default-padding-top storefront--container">
-        <h1 className="mb-4">Shop</h1>
+        <h1 className="mb-4">Shop - {this.props.category}</h1>
         <div className="row justify-content-start align-items-top">
           {this.props.products.map((product) => {
             return (

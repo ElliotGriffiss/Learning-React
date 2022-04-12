@@ -5,6 +5,7 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 class ProductDisplay extends Component {
   state = {
     Quantity: 1,
+    SuccessNotification: false,
   };
 
   style = {
@@ -30,20 +31,15 @@ class ProductDisplay extends Component {
     this.setState({ Quantity: quantity });
   };
 
+  // Handles when we add an item to the cart
   addItemToCart = () => {
     this.props.onAddToCart(this.props.displayProduct, this.state.Quantity);
-    this.ResetQuantity();
+    this.setState({ Quantity: 1, SuccessNotification: true });
   };
 
   // If we handle this here we can also reset the item quantity
   closeProductDisplay = () => {
     this.props.onCloseProductDisplay();
-    this.ResetQuantity();
-  };
-
-  // When close the panel or add an item to cart we need to make sure we reset the quantity
-  ResetQuantity = () => {
-    this.setState({ Quantity: 1 });
   };
 
   render() {
@@ -104,13 +100,16 @@ class ProductDisplay extends Component {
                       +
                     </button>
                   </div>
-                  <button
-                    className="btn storefront--cart-button"
-                    onClick={() => this.addItemToCart()}
-                  >
-                    Add To Cart
-                    <FontAwesomeIcon className="ml-2" icon={faShoppingCart} />
-                  </button>
+                  <div className="d-flex align-items-end">
+                    <button
+                      className="btn storefront--cart-button"
+                      onClick={() => this.addItemToCart()}
+                    >
+                      Add To Cart
+                      <FontAwesomeIcon className="ml-2" icon={faShoppingCart} />
+                    </button>
+                    {this.getItemAddedNotification()}
+                  </div>
                 </div>
               </div>
             </div>
@@ -136,6 +135,22 @@ class ProductDisplay extends Component {
     let counterClasses = "badge m-2 badge";
     counterClasses += this.state.Quantity == 0 ? "-warning" : "-primary";
     return counterClasses;
+  }
+
+  getItemAddedNotification() {
+    let notificationClasses = "ml-2 blue ";
+    notificationClasses += this.state.SuccessNotification
+      ? "product-display--success-notification-active"
+      : "product-display--success-notification";
+
+    return this.state.SuccessNotification ? (
+      <span
+        className={notificationClasses}
+        onAnimationEnd={() => this.setState({ SuccessNotification: false })}
+      >
+        Item(s) Added to Cart Successfully.
+      </span>
+    ) : null;
   }
 }
 

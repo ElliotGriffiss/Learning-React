@@ -18,6 +18,10 @@ h1 {
     color: #ffdc00
 }
 
+.blue {
+    color: #007681;
+}
+
 a:hover {
     color: #ffdc00 !important;
     text-decoration: inherit !important;
@@ -326,7 +330,7 @@ a:hover {
 
 .product-display--wrapper-style{
     padding: 48px 28px;
-    background-color: #fff;
+    background-color: #fff;  
     border: 2px solid #007681;
     border-radius: 5px;
     height: 100%;
@@ -360,6 +364,27 @@ a:hover {
     display: block;
     margin-right: auto;
     margin-left: auto;
+}
+
+.product-display--success-notification {
+    display: none;
+}
+
+.product-display--success-notification-active {
+    animation-name: fade-out-slow;
+    animation-duration: 0.5s;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fade-out-slow {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
 
 #colophon {

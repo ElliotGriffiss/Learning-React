@@ -147,7 +147,7 @@ class App extends Component {
           <NavBar productCategories={ProductCategories} onCategoryPressed={this.handleChangeCategory} onCartPressed={this.handleToggleCart} basketTotal={this.state.BasketTotal} totalBasketItems={this.state.BasketItems.length} />
           <Cart Visible={this.state.CartActive} onCartPressed={this.handleToggleCart} onCheckout={this.handleCheckout} basketTotal={this.state.BasketTotal} basketItems={this.state.BasketItems} onReset={this.handleReset} onDecrement={this.handleDecrement} onIncrement={this.handleIncrement} onDelete={this.handleDelete} />
           <main className='position-relative'>
-            <StoreFront products={this.getActiveProducts(this.state.ActiveCat)} onAddToCart={this.handleAddToCart} onViewProduct={this.handleOpenProductDisplay} />
+            <StoreFront category={this.state.ActiveCat} products={this.getActiveProducts(this.state.ActiveCat)} onAddToCart={this.handleAddToCart} onViewProduct={this.handleOpenProductDisplay} />
             <ProductDisplay displayProduct={this.state.DisplayProduct} onAddToCart={this.handleAddToCart} onCloseProductDisplay={this.handleCloseProductDisplay} />
             <Colophon />
           </main>
