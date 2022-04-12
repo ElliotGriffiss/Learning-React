@@ -47,7 +47,6 @@ class StoreItem extends Component {
   // Reduces the number of characters in the description to ensure the cards fit nicely on screen
   formatDescription = () => {
     const { description } = this.props.product;
-    console.log(description);
 
     return (
       <React.Fragment>

@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 
-class Counter extends Component {
+class CartItem extends Component {
   state = {};
 
   style = {
     fontSize: 18,
     fontWeight: "bold",
+    minWidth: 36,
   };
 
   render() {
@@ -76,4 +77,4 @@ class Counter extends Component {
   }
 }
 
-export default Counter;
+export default CartItem;

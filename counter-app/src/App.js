@@ -19,7 +19,6 @@ class App extends Component {
 
   // Increases Quantity of an item in the basket
   handleIncrement = (bItem) => {
-    console.log("Increment");
     const basketItems = [...this.state.BasketItems];
     const index = basketItems.indexOf(bItem);
     basketItems[index] = { ...bItem };
@@ -31,7 +30,6 @@ class App extends Component {
 
   // Decreases Quantity of an item in the basket.
   handleDecrement = (bItem) => {
-    console.log("Decrement");
     const basketItems = [...this.state.BasketItems];
     const index = basketItems.indexOf(bItem);
     basketItems[index] = { ...bItem };
@@ -40,7 +38,6 @@ class App extends Component {
     if (basketItems[index].Quantity <= 0)
     {
       this.handleDelete(basketItems[index].Product.id);
-      console.log("delete: "+basketItems[index].Product.id);
     }
     else
     {
@@ -80,7 +77,7 @@ class App extends Component {
   }
 
   // Adds a product to the cart.
-  handleAddToCart = (product) => {
+  handleAddToCart = (product, quantity = 1) => {
     let basketItems = [...this.state.BasketItems];
     let basketItem = basketItems.find((b) => b.Product.id === product.id);
 
@@ -88,7 +85,7 @@ class App extends Component {
     {
         basketItem = {
          Product: product, 
-         Quantity: 1,
+         Quantity: quantity,
         };
 
         basketItems.push(basketItem);
@@ -97,7 +94,7 @@ class App extends Component {
     { 
       const index = basketItems.indexOf(basketItem);
       basketItems[index] = { ...basketItem };
-      basketItems[index].Quantity++;
+      basketItems[index].Quantity += quantity;
     }
 
     const basketTotal = this.UpdateBasketTotal(basketItems);

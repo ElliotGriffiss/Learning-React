@@ -311,9 +311,9 @@ a:hover {
     position: absolute;
     z-index: 33;
     top: 4rem;
-    left: 4rem;
+    left: 6rem;
     bottom: 4rem;
-    right: 4rem;
+    right: 6rem;
     background-color: #fff;
     border-radius: 5px;
     padding: 60px 40px;
