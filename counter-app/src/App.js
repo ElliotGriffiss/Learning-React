@@ -21,7 +21,7 @@ class App extends Component {
   }
 
   handleChangeCategory = (catString) => {
-    this.setState({ActiveCat: catString});
+    this.setState({ActiveCat: catString, DisplayProduct: null, CartActive: false});
   }
 
   getActiveProducts = (catString) => {

@@ -6,6 +6,7 @@ class ProductDisplay extends Component {
   state = {
     Quantity: 1,
     SuccessNotification: false,
+    BackGroundFadeIn: false,
   };
 
   style = {

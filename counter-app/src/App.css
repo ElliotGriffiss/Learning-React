@@ -326,6 +326,9 @@ a:hover {
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 14, 0.6);
+    animation-name: fade-in;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
 }
 
 .product-display--wrapper-style{
@@ -371,20 +374,10 @@ a:hover {
 }
 
 .product-display--success-notification-active {
-    animation-name: fade-out-slow;
+    animation-name: fade-out;
     animation-duration: 0.5s;
     animation-delay: 2s;
     animation-fill-mode: forwards;
-}
-
-@keyframes fade-out-slow {
-    0% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
 }
 
 #colophon {
@@ -396,4 +389,26 @@ a:hover {
 
 #colophon a {
     color: #fff;
+}
+
+/* Animations */
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
