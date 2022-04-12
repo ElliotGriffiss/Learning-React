@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
 import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/navbar';

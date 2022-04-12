@@ -10,7 +10,7 @@ class StoreItem extends Component {
 
     return (
       <div
-        className="col-sm-4 default-padding-bottom"
+        className="col-sm-6 col-lg-4 default-padding-bottom"
         key={this.props.product.id}
       >
         <div className="storefront--card">

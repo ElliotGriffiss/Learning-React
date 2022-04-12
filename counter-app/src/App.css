@@ -152,7 +152,7 @@ a:hover {
     top: calc(0px + 88px);
     right: 0;
     height: calc(100vh - 88px);
-    width: 30%;
+    width: 572px;
     background-color: #241f1f;
     transition: 0.3s ease-in;
   }
@@ -195,6 +195,7 @@ a:hover {
     padding-bottom: 12px;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 }
@@ -355,6 +356,7 @@ a:hover {
     position: absolute;
     top: 20px;
     right: 20px;
+    z-index: 10;
 }
 
 .product-display--col-image {
@@ -413,5 +415,113 @@ a:hover {
     }
 }
 
-/* Mobile */
+/*  Mobile */
 
+.tablet-display {
+    display: none;
+}
+
+.dropdown-menu a:hover {
+    color: #007681 !important;
+}
+
+@media screen and (max-width: 1024px) {
+    .tablet-display-none {
+        display: none;
+    }
+    
+    .tablet-display {
+        display: initial;
+    }
+
+    h1 {
+        font-size: 32px !important
+    }
+
+    h2 {
+        font-size: 1.8rem !important;
+    }
+
+    .product-display--wrapper {
+        top: 2rem !important;
+        left: 2rem !important;
+        right: 2rem !important;
+        bottom: 2rem !important;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .mobile-display-none {
+        display: none !important;
+    }
+    
+    .mobile-d-block {
+        display: block !important;
+    }
+
+    h1 {
+        font-size: 28px !important;
+    }
+
+    h2 {
+        font-size: 1.4rem !important;
+    }
+
+    h3 {
+        font-size: 1.4rem !important;
+    }
+
+    p {
+        font-size: 0.8rem !important;
+    }
+
+    .store-nav--logo-icon {
+        font-size: 24px;
+    }
+
+    .store-nav--Logo-text {
+        font-size: 16px;
+    }
+
+    .mobile-cart-reorder {
+        order: 3;
+        width: 100%;
+        text-align: center;
+    }
+
+    .dropdown-menu {
+        left: initial !important;
+        right: 0;
+    }
+
+    .cart {
+        width: 90% !important;
+        top: 110px;
+        height: calc(100vh - 110px);
+    }
+
+    .cart--checkout-box .btn {
+        width: initial !important;
+      }
+
+    .product-display--countainer {
+        top: 100px;
+    }
+
+    .product-display--wrapper-style {
+        overflow-y: auto;
+        padding: 28px 14px !important;
+    }
+    
+    .product-display--wrapper {
+        top: 1rem !important;
+        left: 1rem !important;
+        right: 1rem !important;
+        bottom: 1rem !important;
+    }
+
+    .product-display--card-image {
+        max-height: 140px;
+        margin-bottom: 1rem;
+    }
+}

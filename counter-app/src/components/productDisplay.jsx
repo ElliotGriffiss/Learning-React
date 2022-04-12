@@ -102,7 +102,7 @@ class ProductDisplay extends Component {
                       +
                     </button>
                   </div>
-                  <div className="d-flex align-items-end">
+                  <div className="d-flex align-items-end mobile-d-block">
                     <button
                       className="btn storefront--cart-button"
                       onClick={() => this.addItemToCart()}

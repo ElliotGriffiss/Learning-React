@@ -21,22 +21,55 @@ class NavBar extends Component {
               </div>
             </a>
           </div>
-          <div>
-            {this.props.productCategories.map((cat) => {
-              return (
+          <div className="mobile-cart-reorder">
+            <div className="tablet-display-none">
+              {this.props.productCategories.map((cat) => {
+                return (
+                  <a
+                    key={cat}
+                    onClick={() => this.props.onCategoryPressed(cat)}
+                    className="store-nav--cat-button"
+                    href="#"
+                  >
+                    {cat}
+                  </a>
+                );
+              })}
+            </div>
+            <div className="tablet-display">
+              <div className="dropdown">
                 <a
-                  key={cat}
-                  onClick={() => this.props.onCategoryPressed(cat)}
-                  className="store-nav--cat-button"
+                  className="white dropdown-toggle"
                   href="#"
+                  role="button"
+                  id="dropdownMenuLink"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
                 >
-                  {cat}
+                  Categories
                 </a>
-              );
-            })}
+                <div
+                  className="dropdown-menu"
+                  aria-labelledby="dropdownMenuLink"
+                >
+                  {this.props.productCategories.map((cat) => {
+                    return (
+                      <a
+                        key={cat}
+                        onClick={() => this.props.onCategoryPressed(cat)}
+                        className="dropdown-item"
+                        href="#"
+                      >
+                        {cat}
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
           </div>
           <div>
-            {" "}
             <a
               className="store-nav--cart mr-3 p-2"
               onClick={() => this.props.onCartPressed()}
