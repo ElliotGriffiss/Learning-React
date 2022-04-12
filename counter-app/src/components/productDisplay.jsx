@@ -40,6 +40,7 @@ class ProductDisplay extends Component {
 
   // If we handle this here we can also reset the item quantity
   closeProductDisplay = () => {
+    this.setState({ SuccessNotification: false });
     this.props.onCloseProductDisplay();
   };
 
