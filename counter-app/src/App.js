@@ -6,6 +6,8 @@ import Cart from './components/cart';
 import StoreFront from './components/storefront';
 import ProductDisplay from './components/productDisplay';
 import Colophon from './components/colophon';
+import Products from "./products.json";
+import ProductCategories from "./productCategories.json"
 
 class App extends Component {
   state = {
@@ -15,6 +17,15 @@ class App extends Component {
     BasketTotal: 0,
     CartActive: false,
     DisplayProduct: null,
+    ActiveCat: "All",     // TODO: learn How To Use Enums in JavaScript
+  }
+
+  handleChangeCategory = (catString) => {
+    this.setState({ActiveCat: catString});
+  }
+
+  getActiveProducts = (catString) => {
+      return (catString !== "All") ? Products.filter((c) => c.category.toUpperCase() === catString.toUpperCase()) : Products;
   }
 
   // Increases Quantity of an item in the basket
@@ -133,10 +144,10 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-          <NavBar onCartPressed={this.handleToggleCart} basketTotal={this.state.BasketTotal} totalBasketItems={this.state.BasketItems.length} />
+          <NavBar productCategories={ProductCategories} onCategoryPressed={this.handleChangeCategory} onCartPressed={this.handleToggleCart} basketTotal={this.state.BasketTotal} totalBasketItems={this.state.BasketItems.length} />
           <Cart Visible={this.state.CartActive} onCartPressed={this.handleToggleCart} onCheckout={this.handleCheckout} basketTotal={this.state.BasketTotal} basketItems={this.state.BasketItems} onReset={this.handleReset} onDecrement={this.handleDecrement} onIncrement={this.handleIncrement} onDelete={this.handleDelete} />
           <main className='position-relative'>
-            <StoreFront onAddToCart={this.handleAddToCart} onViewProduct={this.handleOpenProductDisplay} />
+            <StoreFront products={this.getActiveProducts(this.state.ActiveCat)} onAddToCart={this.handleAddToCart} onViewProduct={this.handleOpenProductDisplay} />
             <ProductDisplay displayProduct={this.state.DisplayProduct} onAddToCart={this.handleAddToCart} onCloseProductDisplay={this.handleCloseProductDisplay} />
             <Colophon />
           </main>

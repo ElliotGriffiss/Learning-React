@@ -7,30 +7,49 @@ class NavBar extends Component {
   render() {
     return (
       <div className="store-nav">
-        <nav className="navbar p-0">
-          <a className="store-nav--nav" href="#">
-            <FontAwesomeIcon
-              className="store-nav--logo-icon mr-2"
-              icon={faReact}
-            />
-            <div className="store-nav--Logo-text">
-              React
-              <br />
-              Storefront
-            </div>
-          </a>
-          <a
-            className="store-nav--cart mr-3 p-2"
-            onClick={() => this.props.onCartPressed()}
-          >
-            <span className="mr-2 store-nav--total">
-              £{this.props.basketTotal.toFixed(2)}
-            </span>
-            <div className="position-relative d-inline">
-              <FontAwesomeIcon className="fa-lg" icon={faShoppingCart} />
-              {this.GetCartCounter()}
-            </div>
-          </a>
+        <nav className="navbar p-0 container">
+          <div>
+            <a className="store-nav--nav" href="#">
+              <FontAwesomeIcon
+                className="store-nav--logo-icon mr-2"
+                icon={faReact}
+              />
+              <div className="store-nav--Logo-text">
+                React
+                <br />
+                Storefront
+              </div>
+            </a>
+          </div>
+          <div>
+            {this.props.productCategories.map((cat) => {
+              return (
+                <a
+                  key={cat}
+                  onClick={() => this.props.onCategoryPressed(cat)}
+                  className="store-nav--cat-button"
+                  href="#"
+                >
+                  {cat}
+                </a>
+              );
+            })}
+          </div>
+          <div>
+            {" "}
+            <a
+              className="store-nav--cart mr-3 p-2"
+              onClick={() => this.props.onCartPressed()}
+            >
+              <span className="mr-2 store-nav--total">
+                £{this.props.basketTotal.toFixed(2)}
+              </span>
+              <div className="position-relative d-inline">
+                <FontAwesomeIcon className="fa-lg" icon={faShoppingCart} />
+                {this.GetCartCounter()}
+              </div>
+            </a>
+          </div>
         </nav>
       </div>
     );

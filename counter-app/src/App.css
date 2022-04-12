@@ -102,6 +102,15 @@ a:hover {
     line-height: 1;
 }
 
+.store-nav--cat-button {
+    color: #fff !important;
+    text-transform: capitalize;
+    padding: 6px;
+    margin-right: 14px;
+    margin-left: 14px;
+    cursor: pointer;
+}
+
 .store-nav--cart {
     color: #fff !important;
     display: flex;
@@ -112,6 +121,9 @@ a:hover {
 
 .store-nav--total {
     margin-bottom: -3px;
+    margin-bottom: -3px;
+    min-width: 90px;
+    text-align: right;
 }
 
 .store-nav--cart-counter {
@@ -249,6 +261,11 @@ a:hover {
     box-shadow: 3px 3px rgba(180, 180, 180,0.7);
 }
 
+/* Just ensures the colophon is always at the bottom of the page */
+.storefront--container {
+    min-height: Calc(100vh - 90px - 59px);
+}
+
 .storefront--card h3 {
     min-height: 67px;
 }
@@ -307,6 +324,14 @@ a:hover {
     background-color: rgba(0, 0, 14, 0.6);
 }
 
+.product-display--wrapper-style{
+    padding: 48px 28px;
+    background-color: #fff;
+    border: 2px solid #007681;
+    border-radius: 5px;
+    height: 100%;
+}
+
 .product-display--wrapper {
     position: absolute;
     z-index: 33;
@@ -316,13 +341,13 @@ a:hover {
     right: 6rem;
     background-color: #fff;
     border-radius: 5px;
-    padding: 60px 40px;
+    padding: 12px;
 }
 
 .product-display--close {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 20px;
+    right: 20px;
 }
 
 .product-display--col-image {

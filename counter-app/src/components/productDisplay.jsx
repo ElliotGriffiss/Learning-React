@@ -64,50 +64,54 @@ class ProductDisplay extends Component {
             onClick={() => this.closeProductDisplay()}
           ></div>
           <div className="product-display--wrapper">
-            <button
-              className="product-display--close btn btn-danger btn-sm m-2 font-weight-bold"
-              onClick={() => this.closeProductDisplay()}
-            >
-              X
-            </button>
-            <div className="row align-items-start justify-content-start height-100">
-              <div className="col-sm-6 product-display--col-image">
-                <img
-                  className="product-display--card-image"
-                  src={this.props.displayProduct.image}
-                  alt=""
-                />
-              </div>
-              <div className="col-sm-5">
-                <h2>{this.props.displayProduct.title}</h2>
-                <p>
-                  <strong>£{this.props.displayProduct.price.toFixed(2)}</strong>
-                </p>
-                <p>{this.props.displayProduct.description}</p>
-                <div className="cart--buttons mb-3">
+            <div className="product-display--wrapper-style">
+              <button
+                className="product-display--close btn btn-danger btn-sm m-2 font-weight-bold"
+                onClick={() => this.closeProductDisplay()}
+              >
+                X
+              </button>
+              <div className="row align-items-start justify-content-start height-100">
+                <div className="col-sm-6 product-display--col-image">
+                  <img
+                    className="product-display--card-image"
+                    src={this.props.displayProduct.image}
+                    alt=""
+                  />
+                </div>
+                <div className="col-sm-5">
+                  <h2>{this.props.displayProduct.title}</h2>
+                  <p>
+                    <strong>
+                      £{this.props.displayProduct.price.toFixed(2)}
+                    </strong>
+                  </p>
+                  <p>{this.props.displayProduct.description}</p>
+                  <div className="cart--buttons mb-3">
+                    <button
+                      onClick={() => this.handleDecrement()}
+                      className={minusButtonClasses}
+                    >
+                      -
+                    </button>
+                    <span style={this.style} className={counterClasses}>
+                      {this.state.Quantity}
+                    </span>
+                    <button
+                      onClick={() => this.handleIncrement()}
+                      className="btn btn-secondary btn-sm"
+                    >
+                      +
+                    </button>
+                  </div>
                   <button
-                    onClick={() => this.handleDecrement()}
-                    className={minusButtonClasses}
+                    className="btn storefront--cart-button"
+                    onClick={() => this.addItemToCart()}
                   >
-                    -
-                  </button>
-                  <span style={this.style} className={counterClasses}>
-                    {this.state.Quantity}
-                  </span>
-                  <button
-                    onClick={() => this.handleIncrement()}
-                    className="btn btn-secondary btn-sm"
-                  >
-                    +
+                    Add To Cart
+                    <FontAwesomeIcon className="ml-2" icon={faShoppingCart} />
                   </button>
                 </div>
-                <button
-                  className="btn storefront--cart-button"
-                  onClick={() => this.addItemToCart()}
-                >
-                  Add To Cart
-                  <FontAwesomeIcon className="ml-2" icon={faShoppingCart} />
-                </button>
               </div>
             </div>
           </div>
